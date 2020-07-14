@@ -1,13 +1,13 @@
 {
   "name": "call-bash",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Execute bash commands with non-blocking I/O.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Christian Lewis <hello@trytelework.com>",
   "license": "MIT",
   "dependencies": {
     "ora": "^4.0.4"
