@@ -27,3 +27,11 @@ Outputs:
 "World"
 ✔ All done!
 ```
+
+# API
+```
+const {
+    callBash,
+    callBashSequential
+} = require('call-bash');
+```
