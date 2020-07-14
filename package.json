@@ -1,6 +1,6 @@
 {
   "name": "call-bash",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "Execute bash commands with non-blocking I/O.",
   "main": "index.js",
   "scripts": {
