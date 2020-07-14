@@ -10,15 +10,17 @@ const {
     callBashSequential
 } = require('call-bash');
 
-const spinner = ora('Starting...').start();
+async function test() {
+    const spinner = ora('Starting...').start();
 
-try {
-    await callBash('do-task arg1 arg2');
-} catch (e) {
-    spinner.fail('Something went wrong!');
+    try {
+        await callBash('do-task arg1 arg2');
+    } catch (e) {
+        return spinner.fail('Something went wrong!');
+    }
+
+    spinner.succeed('All done!');
 }
-
-spinner.succeed('All done!');
 ```
 
 # Examples

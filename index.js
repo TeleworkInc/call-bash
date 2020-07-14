@@ -7,7 +7,7 @@ const DEFAULTS = {
 const callBash = (cmd, options = DEFAULTS) => new Promise(
     (resolve, reject) => {
         cmd = cmd.split(' ');
-        spawn(cmd[0], cmd.slice(1), options)
+        spawn(cmd.shift(), cmd, options)
             .on('exit', resolve)
             .on('error', reject);
     }
