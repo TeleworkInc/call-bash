@@ -4,7 +4,7 @@ const DEFAULTS = {
     stdio: 'inherit'
 };
 
-const callBash = (cmd, options = DEFAULTS) => new Promise(
+const call = (cmd, options = DEFAULTS) => new Promise(
     (resolve, reject) => {
         cmd = cmd.split(' ');
         spawn(cmd.shift(), cmd, options)
@@ -13,13 +13,13 @@ const callBash = (cmd, options = DEFAULTS) => new Promise(
     }
 );
 
-const callBashSequential = async (cmds, options) => {
+const sequential = async (cmds, options) => {
     for (const cmd of cmds) {
-        await callBash(cmd, options);
+        await call(cmd, options);
     }
 }
 
 module.exports = {
-    callBash,
-    callBashSequential
+    call,
+    sequential
 }

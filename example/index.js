@@ -1,30 +1,34 @@
-const { callBash, callBashSequential } = require('..');
+const { call, sequential } = require('..');
 const ora = require('ora');
 
 (async function() {
     let failed = false;
 
-    const spinner = ora('Waiting...').start();
-    await callBash('sleep 1');
+    let spinner = ora('Testing sleep delay...').start();
+    await call('sleep 1');
     spinner.succeed('All done!');
 
-    const spinner2 = ora('Round 2...').start();
-    await callBashSequential([
+    spinner = ora('Testing stdin...').start();
+    await sequential([
         'sleep 1',
         'echo Message 1',
         'sleep 1',
         'echo Message 2'
     ]);
-    spinner2.succeed('Success!');
+    spinner.stop();
 
-    const spinner3 = ora('Throwing on error...').start();
+    spinner = ora('Testing error...').start();
     try {
-        await callBashSequential([
+        await sequential([
             'sleep 1',
             'exit 1',
         ]);
     } catch (e) {
-        return spinner3.fail('Uh-oh, something went wrong!');
+        spinner.fail('Uh-oh, something went wrong!');
+        await call('sleep 1');
     }
-    spinner3.succeed('Nothing broke!');
+
+    spinner = ora('Testing success...').start();
+    await call('sleep 1');
+    spinner.succeed('Nothing broke!');
 })();

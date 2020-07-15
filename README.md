@@ -1,20 +1,20 @@
 # call-bash
 A simple utility for using `child_process.spawn` inside of a Promise wrapper.
 
-Allows for the `await callBash(...)` pattern, initially developed to play nice with the `ora` package, i.e.:
+Allows for the `await call(...)` pattern, initially developed to play nice with the `ora` package, i.e.:
 
 ```javascript
 const ora = require('ora');
 const {
-    callBash,
-    callBashSequential
+    call,
+    sequential
 } = require('call-bash');
 
 async function test() {
     const spinner = ora('Starting...').start();
 
     try {
-        await callBash('do-task arg1 arg2');
+        await call('do-task arg1 arg2');
     } catch (e) {
         return spinner.fail('Something went wrong!');
     }
@@ -27,14 +27,14 @@ async function test() {
 
 ```javascript
 const spinner = ora('Waiting...').start();
-await callBash('sleep 1');
+await call('sleep 1');
 spinner.succeed('All done!');
 ```
 Will call bash (non-blocking) and run the spinner for 1 second, then exit.
 
 ```javascript
 const spinner = ora('Waiting...').start();
-await callBashSequential([
+await sequential([
     'echo "Hello"',
     'echo "World"'
 ]);
@@ -55,7 +55,7 @@ The package simply wraps the `child_process.spawn` call in a Promise which is re
 
 `index.js`
 ```javascript
-const callBash = (cmd, options = DEFAULTS) => new Promise(
+const call = (cmd, options = DEFAULTS) => new Promise(
     (resolve, reject) => {
         cmd = cmd.split(' ');
         spawn(cmd.shift(), cmd, options)
@@ -64,13 +64,13 @@ const callBash = (cmd, options = DEFAULTS) => new Promise(
     }
 );
 
-const callBashSequential = async (cmds, options) => {
+const sequential = async (cmds, options) => {
     for (const cmd of cmds) {
-        await callBash(cmd, options);
+        await call(cmd, options);
     }
 }
 ```
 
 # Footnotes
 
-By default, the options `{ stdio: 'inherit' }` are passed, largely so stdout is visible. These can be overridden in the second argument to either `callBash` or `callBashSequential`.
+By default, the options `{ stdio: 'inherit' }` are passed, largely so stdout is visible. These can be overridden in the second argument to either `call` or `sequential`.
