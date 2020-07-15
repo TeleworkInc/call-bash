@@ -8,7 +8,7 @@ const call = (cmd, options = DEFAULTS) => new Promise(
     (resolve, reject) => {
         cmd = cmd.split(' ');
         spawn(cmd.shift(), cmd, options)
-            .on('exit', () => (console.log(), resolve()))
+            .on('exit', resolve)
             .on('error', reject);
     }
 );
