@@ -8,16 +8,13 @@ const call = (cmd, options = DEFAULTS) => new Promise(
     (resolve, reject) => {
         cmd = cmd.split(' ');
         spawn(cmd.shift(), cmd, options)
-            .on('exit', resolve)
+            .on('exit', () => (resolve(), console.log()))
             .on('error', reject);
     }
 );
 
 const sequential = async (cmds, options) => {
-    for (const cmd of cmds) {
-        await call(cmd, options);
-        console.log();
-    }
+    for (const cmd of cmds) await call(cmd, options);
 }
 
 module.exports = {
