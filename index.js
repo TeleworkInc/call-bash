@@ -14,10 +14,7 @@ const call = (cmd, options = DEFAULTS) => new Promise(
 );
 
 const sequential = async (cmds, options) => {
-    for (const cmd of cmds) {
-        await call(cmd, options);
-        console.log();
-    }
+    for (const cmd of cmds) await call(cmd, options);
 }
 
 module.exports = {
