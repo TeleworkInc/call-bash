@@ -61,7 +61,7 @@ const callBash = async (...cmds) => {
     for (let cmd of cmds) {
         cmd = cmd.split(' ');
         await new Promise((resolve, reject) => {
-            spawn(cmd.shift(), cmd, STDIO)
+            spawn(cmd.shift(), cmd, global.SPAWN_OPTIONS || DEFAULTS)
                 .on('exit', resolve)
                 .on('error', reject);
         });
@@ -71,6 +71,7 @@ const callBash = async (...cmds) => {
 
 # Footnotes
 
-The options `{ stdio: 'inherit' }` are passed to `spawn`, so stdout will be
-visible. This is not configurable for the sake of simplicity (the only
-arguments) `callBash` takes are commands).
+The options `{ stdio: 'inherit' }` are passed to `spawn` by default, and stdout
+will be visible. For the sake of simplicity, the only arguments `callBash` takes
+are commands, but you can override this setting with `global.SPAWN_OPTIONS` if
+necessary. 
