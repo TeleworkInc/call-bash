@@ -51,26 +51,26 @@ Outputs:
 
 # Source
 
-The package simply wraps the `child_process.spawn` call in a Promise which is resolved on exit and rejected on error.  
+The package simply wraps the `child_process.spawn` call in a Promise which is
+resolved on exit and rejected on error.  Multiple commands may be passed in, and
+they will be executed in sequential order.
 
 `index.js`
 ```javascript
-const call = (cmd, options = DEFAULTS) => new Promise(
-    (resolve, reject) => {
+const callBash = async (...cmds) => {
+    for (let cmd of cmds) {
         cmd = cmd.split(' ');
-        spawn(cmd.shift(), cmd, options)
-            .on('exit', resolve)
-            .on('error', reject);
-    }
-);
-
-const sequential = async (cmds, options) => {
-    for (const cmd of cmds) {
-        await call(cmd, options);
+        await new Promise((resolve, reject) => {
+            spawn(cmd.shift(), cmd, STDIO)
+                .on('exit', resolve)
+                .on('error', reject);
+        });
     }
 }
 ```
 
 # Footnotes
 
-By default, the options `{ stdio: 'inherit' }` are passed, largely so stdout is visible. These can be overridden in the second argument to either `call` or `sequential`.
+The options `{ stdio: 'inherit' }` are passed to `spawn`, so stdout will be
+visible. This is not configurable for the sake of simplicity (the only
+arguments) `callBash` takes are commands).
