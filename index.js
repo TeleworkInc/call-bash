@@ -1,26 +1,18 @@
 const { spawn } = require('child_process');
 
-const DEFAULTS = {
+const STDIO = {
     stdio: 'inherit'
 };
 
-const call = (cmd, options = DEFAULTS) => new Promise(
-    (resolve, reject) => {
+const callBash = async (...cmds) => {
+    for (let cmd of cmds) {
         cmd = cmd.split(' ');
-        spawn(cmd.shift(), cmd, options)
-            .on('exit', resolve)
-            .on('error', reject);
-    }
-);
-
-const sequential = async (cmds, options) => {
-    for (const cmd of cmds) {
-        await call(cmd, options);
-        console.log();
+        await new Promise((resolve, reject) => {
+            spawn(cmd.shift(), cmd, STDIO)
+                .on('exit', resolve)
+                .on('error', reject);
+        });
     }
 }
 
-module.exports = {
-    call,
-    sequential
-}
+module.exports = callBash;
