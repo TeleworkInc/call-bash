@@ -4,7 +4,7 @@
   "description": "Execute bash commands with non-blocking I/O.",
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "test": "ava"
   },
   "keywords": [],
   "author": "Christian Lewis <hello@trytelework.com>",

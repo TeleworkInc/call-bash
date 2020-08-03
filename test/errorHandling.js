@@ -1,7 +1,7 @@
 const test = require('ava');
 const callBash = require('..');
 
-test('should not throw on zero code exit', async (t) => {
+test('should not throw for exit code 0', async (t) => {
   try {
     await callBash('exit 0');
   } catch (e) {
@@ -10,7 +10,7 @@ test('should not throw on zero code exit', async (t) => {
   t.pass();
 });
 
-test('should throw on nonzero exit', async (t) => {
+test('should throw for nonzero exit code', async (t) => {
   try {
     await callBash('exit 1');
   } catch (e) {
@@ -19,7 +19,7 @@ test('should throw on nonzero exit', async (t) => {
   t.fail();
 });
 
-test('should throw on Node failure', async (t) => {
+test('should throw on process failure', async (t) => {
   try {
     await callBash('node ./example/nodeFailure.js');
   } catch (e) {
