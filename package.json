@@ -11,5 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "ora": "^4.0.4"
+  },
+  "devDependencies": {
+    "ava": "^3.11.1"
   }
 }
