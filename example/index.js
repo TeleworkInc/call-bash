@@ -1,13 +1,13 @@
-const callBash = require('..');
+const shell = require('..');
 const ora = require('ora');
 
 (async function() {
     let spinner = ora('Testing sleep delay...').start();
-    await callBash('sleep 1');
+    await shell('sleep 1');
     spinner.succeed('All done!');
 
     spinner = ora('Testing stdin...').start();
-    await callBash(
+    await shell(
         'sleep 1',
         'echo Message 1',
         'sleep 1',
@@ -17,16 +17,16 @@ const ora = require('ora');
 
     spinner = ora('Testing error...').start();
     try {
-        await callBash(
+        await shell(
             'sleep 1',
             'exit 1',
         );
     } catch (e) {
         spinner.fail('Uh-oh, something went wrong!');
-        await callBash('sleep 1');
+        await shell('sleep 1');
     }
 
     spinner = ora('Testing success...').start();
-    await callBash('sleep 1');
+    await shell('sleep 1');
     spinner.succeed('Nothing broke!');
 })();

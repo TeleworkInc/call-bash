@@ -1,8 +1,7 @@
 {
-  "name": "call-bash",
+  "name": "async-shell",
   "version": "1.23.0",
   "description": "Execute bash commands with non-blocking I/O.",
-  "main": "index.js",
   "scripts": {
     "test": "ava"
   },
