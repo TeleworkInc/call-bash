@@ -5,7 +5,13 @@
   "scripts": {
     "test": "ava"
   },
-  "keywords": [],
+  "keywords": [
+    "async",
+    "await",
+    "shell",
+    "promise",
+    "bash"
+  ],
   "author": "Christian Lewis <hello@trytelework.com>",
   "license": "MIT",
   "dependencies": {
