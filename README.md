@@ -1,11 +1,11 @@
-# async-shell
+# await-shell
 A simple utility for using `child_process.spawn` inside of a Promise wrapper.
 
 Allows for the `await shell(...)` pattern, initially developed to play nice with the `ora` package, i.e.:
 
 ```javascript
 const ora = require('ora');
-const shell = require('async-shell');
+const shell = require('await-shell');
 
 async function test() {
     const spinner = ora('Starting...').start();

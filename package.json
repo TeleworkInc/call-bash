@@ -1,5 +1,5 @@
 {
-  "name": "async-shell",
+  "name": "await-shell",
   "version": "1.24.0",
   "description": "Execute bash commands with non-blocking I/O.",
   "scripts": {
