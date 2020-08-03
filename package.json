@@ -1,6 +1,6 @@
 {
   "name": "async-shell",
-  "version": "1.23.0",
+  "version": "1.24.0",
   "description": "Execute bash commands with non-blocking I/O.",
   "scripts": {
     "test": "ava"
