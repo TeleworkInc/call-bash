@@ -8,6 +8,7 @@
  * @author Christian Lewis
  */
 const { spawn } = require('child_process');
+const chalk = require('chalk');
 
 const DEFAULTS = {
   shell: true,
@@ -28,7 +29,12 @@ const shell = async (...cmds) => {
   for (let cmd of cmds) {
     cmd = cmd.split(' ');
     await new Promise((resolve, reject) => {
-      spawn(cmd.shift(), cmd, global.SPAWN_OPTIONS || DEFAULTS)
+      const thisCmd = cmd.shift();
+      const args = cmd;
+
+      console.log(chalk.grey(`> ${thisCmd} ${args.join(' ')}`));
+
+      spawn(thisCmd, args, global.SPAWN_OPTIONS || DEFAULTS)
           .on(
               'exit',
               (code) => code == 0
