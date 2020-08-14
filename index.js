@@ -32,7 +32,9 @@ const shell = async (...cmds) => {
       const thisCmd = cmd.shift();
       const args = cmd;
 
-      console.log(chalk.grey(`> ${thisCmd} ${args.join(' ')}`));
+      if (global.SHELL_LOG) {
+        console.log(chalk.grey(`> ${thisCmd} ${args.join(' ')}`));
+      }
 
       spawn(thisCmd, args, global.SPAWN_OPTIONS || DEFAULTS)
           .on(
@@ -44,7 +46,7 @@ const shell = async (...cmds) => {
     });
   }
   /** Write newline to prevent visual clutter. */
-  console.log();
+  if (global.SHELL_LOG) console.log();
 };
 
 module.exports = shell;

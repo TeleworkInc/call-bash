@@ -70,9 +70,12 @@ const shell = async (...cmds) => {
 }
 ```
 
-# Footnotes
+# Footnotes and global options
 
 The options `{ stdio: 'inherit', shell: true }` are passed to `spawn` by default, and stdout
 will be visible. For the sake of simplicity, the only arguments `shell` takes
 are commands, but you can override this setting with `global.SPAWN_OPTIONS` if
 necessary. 
+
+Use `global.SHELL_LOG = true` to enable the printing of each command as it is
+executed.
