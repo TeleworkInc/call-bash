@@ -68,7 +68,7 @@ const shell = async (...cmds) => {
         console.log(chalk.grey(`> ${thisCmd} ${args.join(' ')}`));
       }
 
-      spawn(thisCmd, args, global.SPAWN_OPTIONS || DEFAULTS)
+      spawn(thisCmd, args, global.SHELL_OPTIONS || DEFAULTS)
           .on(
               'exit',
               (code) => code == 0

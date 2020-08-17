@@ -58,7 +58,7 @@ const shell = async (...cmds) => {
     for (let cmd of cmds) {
         cmd = cmd.split(' ');
         await new Promise((resolve, reject) => {
-            spawn(cmd.shift(), cmd, global.SPAWN_OPTIONS || DEFAULTS)
+            spawn(cmd.shift(), cmd, global.SHELL_OPTIONS || DEFAULTS)
             .on(
                 'exit', 
                 code => code == 0 
@@ -74,7 +74,7 @@ const shell = async (...cmds) => {
 
 The options `{ stdio: 'inherit', shell: true }` are passed to `spawn` by default, and stdout
 will be visible. For the sake of simplicity, the only arguments `shell` takes
-are commands, but you can override this setting with `global.SPAWN_OPTIONS` if
+are commands, but you can override this setting with `global.SHELL_OPTIONS` if
 necessary. 
 
 Use `global.SHELL_LOG = true` to enable the printing of each command as it is
