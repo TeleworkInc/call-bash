@@ -27,7 +27,39 @@ const DEFAULTS = {
  */
 const shell = async (...cmds) => {
   for (let cmd of cmds) {
+    /**
+     * Trim unnecessary whitespace for convenience.
+     */
+    cmd = cmd.trim();
+
+    /**
+     * Accept form:
+     *
+     * await shell(`
+        google-closure-compiler
+          -O ADVANCED
+          --jscomp_off='*'
+          --js ./testcl.js
+      `);
+     *
+     * ->
+     *
+     * google-closure-compiler \
+        -O ADVANCED \
+        --jscomp_off='*' \
+        --js ./testcl.js
+     */
+    const lines = cmd.split('\n');
+    if (lines.length > 1) {
+      cmd = lines.map(
+          (line, i) => !/\\\s*?$/m.test(line) && i < lines.length - 1
+            ? line + ' \\'
+            : line,
+      ).join('\n');
+    }
+
     cmd = cmd.split(' ');
+
     await new Promise((resolve, reject) => {
       const thisCmd = cmd.shift();
       const args = cmd;

@@ -3,7 +3,12 @@ const shell = require('..');
 
 test('should not throw for exit code 0', async (t) => {
   try {
-    await shell('exit 0');
+    await shell(`
+      google-closure-compiler
+        -O ADVANCED
+        --jscomp_off='*'
+        --js ./testcl.js
+    `);
   } catch (e) {
     return t.fail();
   }
