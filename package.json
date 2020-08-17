@@ -15,10 +15,6 @@
   "author": "Christian Lewis <hello@trytelework.com>",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "ora": "^4.0.4"
-  },
-  "devDependencies": {
-    "ava": "^3.11.1"
+    "chalk": "^4.1.0"
   }
 }
