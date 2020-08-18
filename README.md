@@ -61,9 +61,13 @@ const shell = async (...cmds) => {
             spawn(cmd.shift(), cmd, global.SHELL_OPTIONS || DEFAULTS)
             .on(
                 'exit', 
-                code => code == 0 
-                    ? resolve() 
-                    : reject()
+                (code) => {
+                    if (code === 0) resolve();
+                    else {
+                        if (global.SHELL_STRICT) process.exit(1);
+                        reject(new Error('Exited with code: ' + code));
+                    }
+              }
             );
         });
     }
