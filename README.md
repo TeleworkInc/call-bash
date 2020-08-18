@@ -79,3 +79,9 @@ necessary.
 
 Use `global.SHELL_LOG = true` to enable the printing of each command as it is
 executed.
+
+| Flag        | Description |
+| ----------- | ----------- |
+| `global.SHELL_LOG`        | Set to `true` to print commands to stdout. |
+| `global.SHELL_OPTIONS`    | Override arguments to `child_process.spawn`. Defaults to `{ stdio: 'inherit', shell: true }`. |
+| `global.SHELL_STRICT`     | Instead of rejecting the Promise, call `process.exit(1)`. |
