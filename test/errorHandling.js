@@ -17,7 +17,8 @@ test('should not throw for exit code 0', async (t) => {
 
 test('should throw for nonzero exit code', async (t) => {
   try {
-    await shell('exit 1');
+    global.SHELL_LOG = true;
+    await shell('echo test', 'exit 1');
   } catch (e) {
     return t.pass();
   }

@@ -64,7 +64,7 @@ const shell = async (...cmds) => {
       const thisCmd = cmd.shift();
       const args = cmd;
 
-      if (global.SHELL_LOG) {
+      if (thisCmd.trim() !== 'echo' && global.SHELL_LOG) {
         console.log(chalk.grey(`>  ${thisCmd} ${args.join(' ')}`));
       }
 
@@ -74,10 +74,7 @@ const shell = async (...cmds) => {
               (code) => {
                 if (code === 0) resolve();
                 else {
-                  if (
-                    thisCmd.trim() !== 'echo' &&
-                    global.SHELL_STRICT
-                  ) process.exit(1);
+                  if (global.SHELL_STRICT) process.exit(1);
                   reject(new Error('Exited with code: ' + code));
                 }
               },
