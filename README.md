@@ -60,12 +60,12 @@ const shell = async (...cmds) => {
         await new Promise((resolve, reject) => {
             spawn(cmd.shift(), cmd, global.SHELL_OPTIONS || DEFAULTS)
             .on(
-                'exit', 
+                'exit',
                 (code) => {
                     if (code === 0) resolve();
                     else {
                         if (global.SHELL_STRICT) process.exit(1);
-                        reject(new Error('Exited with code: ' + code));
+                        else reject(new Error('Exited with code: ' + code));
                     }
               }
             );
