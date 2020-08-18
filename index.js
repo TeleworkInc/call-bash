@@ -74,7 +74,10 @@ const shell = async (...cmds) => {
               (code) => {
                 if (code === 0) resolve();
                 else {
-                  if (global.SHELL_STRICT) process.exit(1);
+                  if (
+                    thisCmd.trim() !== 'echo' &&
+                    global.SHELL_STRICT
+                  ) process.exit(1);
                   reject(new Error('Exited with code: ' + code));
                 }
               },
