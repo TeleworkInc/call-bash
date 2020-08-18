@@ -1,6 +1,6 @@
 {
   "name": "await-shell",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Execute bash commands with non-blocking I/O.",
   "homepage": "https://github.com/TeleworkInc/await-shell",
   "scripts": {
