@@ -65,7 +65,7 @@ const shell = async (...cmds) => {
       const args = cmd;
 
       if (thisCmd.trim() !== 'echo' && global.SHELL_LOG) {
-        console.log(chalk.grey(`>  ${thisCmd} ${args.join(' ')}`));
+        console.log(chalk.grey(`\n>  ${thisCmd} ${args.join(' ')}\n`));
       }
 
       spawn(thisCmd, args, global.SHELL_OPTIONS || DEFAULTS)
