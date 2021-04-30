@@ -7,7 +7,7 @@
  *
  * @author Christian Lewis
  */
-const { spawn } = require('child_process');
+const spawn = require('cross-spawn');
 const chalk = require('chalk');
 
 const DEFAULTS = {
@@ -33,7 +33,7 @@ const shell = async (...cmds) => {
     cmd = cmd.trim();
 
     /**
-     * Accept form:
+     * Allow multiline commands:
      *
      * await shell(`
         google-closure-compiler
