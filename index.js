@@ -72,7 +72,7 @@ const shell = async (...cmds) => {
           .on(
               'exit',
               (code) => {
-                if (code === 0) resolve();
+                if (code === 0) resolve(0);
                 else {
                   if (global.SHELL_STRICT) process.exit(1);
                   else reject(new Error('Exited with code: ' + code));
